@@ -2,15 +2,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
 //As a user, I should see the timer increment every second once the page has loaded.
 const counter = document.getElementById('counter');
 let seconds = 0;
+let timer = true;
 
- function counterIntervalFunction() {
-    return setInterval(function(){ //runs repeatedly every 1000 milliseconds or 1 sec
-        seconds += 1;
-        counter.innerText = seconds;
-    }, 1000);
-}
+let counterInterval = setInterval(myTimer, 1000);
 
-const counterInterval = counterIntervalFunction();
+
+function myTimer() {
+    seconds += 1;
+    counter.innerText = seconds;
+};
+
+
 
 
 // As a user, I can manually increment and decrement the counter using the plus and minus buttons.
@@ -64,29 +66,16 @@ heart.addEventListener('click', () => {
         
     }
 
-
-    });
+ });
           
-
-    // heart.addEventListener("click",function(){
-//     var a=document.getElementById("counter"),
-//     b=parseInt(a.innerText),
-//     c=document.querySelector(".likes"),
-//     d=void 0;
-    
-//     if([].concat(_toConsumableArray(c.children)).map(function(a){return parseInt(a.dataset.num)}).includes(b)){d=document.querySelector('[data-num="'+b+'"]');
-//     var e=parseInt(d.children[0].innerText);d.innerHTML=b+" has been liked <span>"+(e+1)+"</span> times"
-// }else(
-//     d=document.createElement("li")).setAttribute("data-num",b),d.innerHTML=b+" has been liked <span>1</span> time",c.appendChild(d)
-
-
-
 
 // As a user, I can pause the counter, disable all buttons except the pause button, switch the label on the button from "pause" to "resume"
 const pause = document.getElementById('pause');
-let timer = true;
+
 
 pause.addEventListener('click', function() {
+
+    console.log(timer)
     const buttons = document.querySelectorAll('button');
     const buttonsArray = Array.from(buttons);
     // console.log(this);
@@ -108,9 +97,12 @@ pause.addEventListener('click', function() {
         this.textContent = 'pause';
         timer = true;
         seconds = parseInt(counter.innerText);
-        seconds += 1;
-        // console.log(seconds);
-        counterInterval();
+        
+        setInterval(function(){ //runs repeatedly every 1000 milliseconds or 1 sec
+            seconds += 1;
+            counter.innerText = seconds;
+        }, 1000);
+    
 
         buttonsArray.forEach(button => {
             button.disabled = false;
