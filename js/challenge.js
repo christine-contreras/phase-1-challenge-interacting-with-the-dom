@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 const counter = document.getElementById('counter');
 let seconds = 0;
 
-const counterIntervalFunction = function() {
+ function counterIntervalFunction() {
     return setInterval(function(){ //runs repeatedly every 1000 milliseconds or 1 sec
         seconds += 1;
         counter.innerText = seconds;
@@ -33,38 +33,35 @@ const heart = document.getElementById('heart');
 
 
 heart.addEventListener('click', () => {
-     //grab counter value at click
+    //  //grab counter value at click
      const counterValue = parseInt(counter.innerText);
      console.log(counterValue);
-
     //store likes list
     const likesList = document.querySelector('.likes');
-
     // create list item
     const likeItem = document.createElement('li');
-
     //set data num value to countervalue
     // likeItem.setAttribute("data-num",counterValue);
     likeItem.dataset.num = counterValue;
-
    //check if list item already exists
     let checkList = likesList.querySelector(`li[data-num='${counterValue}']`);
     
 
     if(!checkList) {   
     // if it doesn't exist
-
     //create inner html of li
     likeItem.innerHTML = `${counterValue} has been liked <span class="heart-likes">1</span> time`;
-
     //append to parent
     likesList.appendChild(likeItem);
 
-
     } else {
-        console.log('already there');
-        //grab how many li's already exist
+        //if list item already exists then change innerhtml of span
+        const heartLikesSpan = checkList.querySelector('.heart-likes');
+        let numLikes = parseInt(heartLikesSpan.innerText);
+
         //add value as heart likes
+        heartLikesSpan.innerText = `${numLikes + 1}`;
+        
     }
 
 
