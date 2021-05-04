@@ -50,7 +50,7 @@ heart.addEventListener('click', () => {
     if(!checkList) {   
     // if it doesn't exist
     //create inner html of li
-    likeItem.innerHTML = `${counterValue} has been liked <span class="heart-likes">1</span> time`;
+    likeItem.innerHTML = `${counterValue} has been liked <span class="heart-likes">1 time</span>`;
     //append to parent
     likesList.appendChild(likeItem);
 
@@ -60,7 +60,7 @@ heart.addEventListener('click', () => {
         let numLikes = parseInt(heartLikesSpan.innerText);
 
         //add value as heart likes
-        heartLikesSpan.innerText = `${numLikes + 1}`;
+        heartLikesSpan.innerText = `${numLikes + 1} times`;
         
     }
 
